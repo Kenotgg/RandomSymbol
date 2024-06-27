@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace RandomSymbol
 {
-	public class RandomSymbolClass
+	public class RandomClass
 	{
 		public void RandomSymbol(char[] Alphabet, ConsoleKeyInfo userInput)
 		{
 			
 			Random random = new Random();
 			int randomNumber = random.Next(0, Alphabet.Length);
+			//int randomNumber = random.Next(0, 2);
 			//вывод
 			//RandomColor();
-			
-			if(userInput.Key == ConsoleKey.Enter)
+
+			if (userInput.Key == ConsoleKey.Enter)
 			{
 			Console.WriteLine(Alphabet[randomNumber]);
 			}
@@ -31,15 +32,13 @@ namespace RandomSymbol
 			}
 			
 			using (StreamWriter sw = new StreamWriter(@"C:\Users\kenot\source\repos\RandomSymbol\RandomSymbol\bin\Debug\GameLog.txt",true))
-			{
-				
+			{				
 				sw.Write(Alphabet[randomNumber] + " ");
 				
 				//foreach (char symbol in Alphabet)
 				//{
 				//	sw.WriteLine(symbol);
 				//}
-
 			}
 			
 
@@ -53,7 +52,41 @@ namespace RandomSymbol
 			ConsoleColor color = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), Colors[randomIndex]);
 			Console.ForegroundColor = color;
 		}
+		public void RandomNumber(int[] numbers)
+		{
+			Random random = new Random();
+			int randomNumber = random.Next(0, numbers.Length);
+			Console.WriteLine(randomNumber);
+			//if (randomNumber == 37)
+			//{
+			//	Console.WriteLine("Vertasium");
+			//}
+			
+		}
 
+		public void RandomWord(string[] words)
+		{
+			Random random = new Random();
+			int randomNumber = random.Next(0, words.Length);
+			Console.WriteLine(words[randomNumber]);
+		}
+		public int wordIndex = 0;
+		public void RandomWordWithDeleting(string[] words)
+		{
+			Random random = new Random();
+			
+			List<string> listOfWords = words.ToList();
+			int randomNumber = random.Next(0, listOfWords.Count);
+			if(listOfWords[randomNumber] != null)
+			{
+				wordIndex++;
+				Console.WriteLine(wordIndex + " " + listOfWords[randomNumber]);
+				listOfWords.RemoveAt(randomNumber);
+			}
+
+			
+			
+		}
 		
 		
 	}
